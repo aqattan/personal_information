@@ -8,4 +8,5 @@ $(document).on 'turbolinks:load', ->
         bProcessing: true
         bServerSide: true
         responsive: true
+        bDestroy: true
         sAjaxSource: $('#person').data('source')
