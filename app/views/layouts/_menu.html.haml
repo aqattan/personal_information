@@ -1,14 +1,26 @@
-%nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
-  %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  %a.navbar-brand{:href => '/people'} Personal Information
-  #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item.active
-        %a.nav-link{:href => '/people'}
-          Home
-          %span.sr-only (current)
-      %li.nav-item
-        %a.nav-link{:href => '/addresses'} Addresses
-      %li.nav-item
-        %a.nav-link{:href => '/profiles'} Profiles
+.container
+  %nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+    %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    %a.navbar-brand{:href => "#"} Personal Information
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-left
+        - if current_user
+          %li.nav-item.active
+            %a.nav-link{:href => people_path}
+              Home
+              %span.sr-only (current)
+          %li.nav-item
+            %a.nav-link{:href => addresses_path} Addresses
+          %li.nav-item
+            %a.nav-link{:href => profiles_path} Profiles
+      %li.navbar-nav.ml-auto
+        - if current_user
+          %li.navbar-nav.ml-auto
+            Signed in as &nbsp
+            = succeed "!" do
+              %strong= current_user.name
+            %li.active#nav-li= link_to 'Sign out', destroy_user_session_path, method: :delete, id: 'nav-a'
+        - else
+          %li.navbar-nav.ml-auto
+            %li.active#nav-li= link_to 'Sign in', user_azure_oauth2_omniauth_authorize_path

@@ -9,9 +9,9 @@
           %li= message
   .field
     = form.label :gender
-    = form.text_field :gender, id: :profile_gender
+    = form.select :gender, ['male', 'female'], {}, id: :profile_gender
   .field
     = form.label :email
-    = form.text_field :email, id: :profile_email
+    = form.select :email, ['yahoo', 'gmail', 'msn', 'aol'], {}, id: :profile_email
   .actions
     = form.submit
