@@ -1,0 +1,14 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @person.name
+%p
+  %strong Phone Number:
+  = @person.phone_number
+%p
+  %strong Date of Birth:
+  = @person.date_of_birth
+
+= link_to 'Edit', edit_person_path(@person)
+|
+= link_to 'Back', people_path
